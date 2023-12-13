@@ -38,26 +38,26 @@ currentPage3(
       addProvider!.productImage != '' ? getCommanSizedBox() : Container(),
       addProvider!.productImage != '' ? selectedMainImageShow() : Container(),
       getCommanSizedBox(),
-      getCommanSizedBox(),
-      Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: getPrimaryCommanText(
-                getTranslated(context, "Product Other Images")!, true),
-          ),
-          Expanded(
-            flex: 2,
-            child: getCommonButtonAdd(
-                getTranslated(context, "Upload")!, 2, setState, context),
-          ),
-        ],
-      ),
-      addProvider!.otherImageUrl.isNotEmpty ? getCommanSizedBox() : Container(),
-      addProvider!.otherImageUrl.isNotEmpty ? getCommanSizedBox() : Container(),
-      addProvider!.otherImageUrl.isNotEmpty
-          ? uploadedOtherImageShow(setState)
-          : Container(),
+      // getCommanSizedBox(),
+      // Row(
+      //   children: [
+      //     Expanded(
+      //       flex: 2,
+      //       child: getPrimaryCommanText(
+      //           getTranslated(context, "Product Other Images")!, true),
+      //     ),
+      //     Expanded(
+      //       flex: 2,
+      //       child: getCommonButtonAdd(
+      //           getTranslated(context, "Upload")!, 2, setState, context),
+      //     ),
+      //   ],
+      // ),
+      // addProvider!.otherImageUrl.isNotEmpty ? getCommanSizedBox() : Container(),
+      // addProvider!.otherImageUrl.isNotEmpty ? getCommanSizedBox() : Container(),
+      // addProvider!.otherImageUrl.isNotEmpty
+      //     ? uploadedOtherImageShow(setState)
+      //     : Container(),
       getCommanSizedBox(),
       // getPrimaryCommanText(getTranslated(context, "Select Video Type")!, false),
       // getCommanSizedBox(),
@@ -124,35 +124,35 @@ currentPage3(
           ? Container()
           : getDescription(1),
       getCommanSizedBox(),
-      Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: getPrimaryCommanText(
-                getTranslated(context, "Extra Description")!, true),
-          ),
-          SizedBox(width: 10,),
-          Expanded(
-            flex: 3,
-            child: getCommonButtonAdd(
-                (addProvider!.extraDescription == "" ||
-                    addProvider!.extraDescription == null)
-                    ? "Add Extra Description"
-                    : "Edit Extra Description",
-                9,
-                setState,
-                context),
-          ),
-        ],
-      ),
-      (addProvider!.extraDescription == "" ||
-          addProvider!.extraDescription == null)
-          ? Container()
-          : getCommanSizedBox(),
-      (addProvider!.extraDescription == "" ||
-          addProvider!.extraDescription == null)
-          ? Container()
-          : getDescription(3),
+      // Row(
+      //   children: [
+      //     Expanded(
+      //       flex: 2,
+      //       child: getPrimaryCommanText(
+      //           getTranslated(context, "Extra Description")!, true),
+      //     ),
+      //     SizedBox(width: 10,),
+      //     Expanded(
+      //       flex: 3,
+      //       child: getCommonButtonAdd(
+      //           (addProvider!.extraDescription == "" ||
+      //               addProvider!.extraDescription == null)
+      //               ? "Add Extra Description"
+      //               : "Edit Extra Description",
+      //           9,
+      //           setState,
+      //           context),
+      //     ),
+      //   ],
+      // ),
+      // (addProvider!.extraDescription == "" ||
+      //     addProvider!.extraDescription == null)
+      //     ? Container()
+      //     : getCommanSizedBox(),
+      // (addProvider!.extraDescription == "" ||
+      //     addProvider!.extraDescription == null)
+      //     ? Container()
+      //     : getDescription(3),
       SizedBox(height: 15,)
     ],
   );

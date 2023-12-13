@@ -189,7 +189,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 .bodySmall!
                                 .copyWith(color: white, fontSize: 14),
                           ),
-                          Row(
+                             Row(
                             children: [
 
 
