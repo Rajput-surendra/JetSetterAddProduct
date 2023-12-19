@@ -199,7 +199,7 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   ApiBaseHelper apiBaseHelper = ApiBaseHelper();
-  String? mobile, password, username, id,fId;
+  String? mobile, password, username, id,fId,status;
   bool loading = false;
   void verifyApi()async{
     try{
@@ -208,6 +208,7 @@ class _OTPScreenState extends State<OTPScreen> {
         "otp":pinCon.text,
       };
       var response = await apiBaseHelper.postAPICall(Uri.parse("${baseUrl}verify_otp"), param);
+      print('__________${param}_________');
       if(!response['error']){
         bool error = response["error"];
         String? msg = response["message"];
@@ -220,7 +221,9 @@ class _OTPScreenState extends State<OTPScreen> {
         id = data[Id];
         username = data[Username];
         mobile = data[Mobile];
-                 print('__________${id}_________');
+        status = data['active'];
+        print('_____status_____${status}_________');
+
         saveUserDetail(id!, username!, mobile!,);
         setPrefrenceBool(isLogin, true);
         FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

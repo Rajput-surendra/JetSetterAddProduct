@@ -39,7 +39,7 @@ class LoginProvider extends ChangeNotifier {
           Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (context) =>   OTPScreen(mobile,otp),
+              builder: (context) => OTPScreen(mobile,otp),
             ),
           );
         } else {
@@ -81,6 +81,7 @@ class LoginProvider extends ChangeNotifier {
             id!,
             username!,
             mobile!,
+
           );
           setPrefrenceBool(isLogin, true);
               FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

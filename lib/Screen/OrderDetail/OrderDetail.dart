@@ -202,15 +202,16 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
 
   Future<void> getOrderDetail() async {
     isNetworkAvail = await isNetworkAvailable();
+    print('__________${context.read<SettingProvider>().CUR_USERID}_________');
     if (isNetworkAvail) {
-      context.read<SettingProvider>().CUR_USERID = await getPrefrence(Id);
+     // context.read<SettingProvider>().CUR_USERID = await getPrefrence(Id);
       var parameter = {
-        SellerId: context.read<SettingProvider>().CUR_USERID,
+        SellerId:context.read<SettingProvider>().CUR_USERID,
         Id: widget.id,
       };
       ApiBaseHelper().postAPICall(getOrdersApi, parameter).then(
             (getdata) async {
-          print('_____aaaaaaaaaaaa_____${getOrdersApi}_____${parameter}____');
+
           bool error = getdata["error"];
           if (!error) {
             var data = getdata["data"];
@@ -547,7 +548,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                     child: Column(
                       children: [
                         Container(
-                          height: 118,
+                          height: 95,
                           width: MediaQuery.of(context).size.width,
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(circularBorderRadius5)),
@@ -649,30 +650,30 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "${getTranslated(context, "Otp")!} - ",
-                                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                                        color: grey3,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: "PlusJakartaSans",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: textFontSize14,
-                                      ),
-                                    ),
-                                    Text(
-                                      widget.otp.toString(),
-                                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                                        fontFamily: 'PlusJakartaSans',
-                                        color: black,
-                                        fontSize: textFontSize14,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       "${getTranslated(context, "Otp")!} - ",
+                                //       style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                //         color: grey3,
+                                //         fontWeight: FontWeight.w400,
+                                //         fontFamily: "PlusJakartaSans",
+                                //         fontStyle: FontStyle.normal,
+                                //         fontSize: textFontSize14,
+                                //       ),
+                                //     ),
+                                //     Text(
+                                //       widget.otp.toString(),
+                                //       style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                //         fontFamily: 'PlusJakartaSans',
+                                //         color: black,
+                                //         fontSize: textFontSize14,
+                                //         fontWeight: FontWeight.w400,
+                                //         fontStyle: FontStyle.normal,
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
                               ],
                             ),
                           ),

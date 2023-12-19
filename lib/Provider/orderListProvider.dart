@@ -106,13 +106,13 @@ class OrderListProvider extends ChangeNotifier {
         /*  context.read<SettingProvider>().CUR_USERID = await getPrefrence(Id);
         CUR_USERNAME = await getPrefrence(Username); */
         var parameter = {
-          // SellerId: context.read<SettingProvider>().CUR_USERID,
-          SellerId: Id,
+           SellerId: context.read<SettingProvider>().CUR_USERID,
+          // SellerId: Id,
           LIMIT: perPage.toString(),
           OFFSET: scrollOffset.toString(),
           SEARCH: searchText.trim(),
         };
-
+       print('_____parameter_____${parameter}_________');
         if (currentSelectedOrderType != '') {
           parameter["order_type"] = currentSelectedOrderType;
         }

@@ -53,6 +53,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   void initState() {
     super.initState();
+    checkStatusApi();
   }
 
   @override
@@ -60,7 +61,35 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     passwordController.dispose();
     super.dispose();
   }
+  String? active,rName;
+  int? status ;
+  checkStatusApi() async {
+    var headers = {
+      'Cookie': 'ci_session=f9232ddd542076392d83cffcc08f690a8b2c5775'
+    };
+    var request = http.MultipartRequest('POST', Uri.parse('https://jetsetterindia.com/seller/app/v1/api/get_online_status'));
+    request.fields.addAll({
+      'user_id':"${context.read<SettingProvider>().CUR_USERID}"
+    });
+    print('__________${request.fields}_________');
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var  finalResult  = jsonDecode(result);
+      setState(() {
+        active = finalResult['data'];
+        rName = finalResult['store_name'];
+        print('____active______${rName}_________');
+        status= int.parse(finalResult['data'].toString());
+        print('____status______${status}_________');
+      });
+    }
+    else {
+      print(response.reasonPhrase);
+    }
 
+  }
 
   getStatus(int status) async {
     var headers = {
@@ -78,7 +107,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       var result  = await response.stream.bytesToString();
       var finalResult =  jsonDecode(result);
       setState(() {
-
+        checkStatusApi();
       });
       setSnackbar(finalResult['message'], context);
     }
@@ -87,11 +116,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     }
 
   }
-  int status = 0; // 0: Offline, 1: Online
+   // 0: Offline, 1: Online
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return active == null ? Center(child: CircularProgressIndicator()):ListView(
       padding: const EdgeInsets.all(0),
       shrinkWrap: true,
       children: <Widget>[
@@ -162,7 +191,20 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            CUR_USERNAME!,
+                           "Restaurant Name : ${ rName.toString()}",
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                color: white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),
+                            maxLines: 1,
+                            softWrap: false,
+                          ),
+                          Text(
+                            "Owner Name : ${CUR_USERNAME!}",
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
                                 .textTheme
@@ -170,7 +212,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 .copyWith(
                                     color: white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                                    fontSize: 12),
                             maxLines: 1,
                             softWrap: false,
                           ),
@@ -194,18 +236,20 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
 
                               Switch(
-                                //activeColor: primary,inactiveThumbColor: secondary,
-                                value: status == 1,
+                               activeColor: primary,
+                                inactiveThumbColor: secondary,
+                                activeTrackColor: white,
+                                value: status == 1?true:false,
                                 onChanged: (value) {
                                   setState(() {
-                                    status = value ? 1 : 0;
-                                    getStatus(status);
+                                    status = value==true ? 1 : 0;
+                                    getStatus(status!);
                                   });
                                 },
                               ),
                               Text(
                                 status == 1 ? 'Online' : 'Offline',
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(fontSize: 15,color: white),
                               ),
 
 

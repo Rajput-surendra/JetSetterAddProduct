@@ -81,6 +81,23 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       print('____this is a Tokan______${fcmToken}_________');
     });
   }
+  Future<void> checkNetwork() async {
+    isNetworkAvail = await isNetworkAvailable();
+    if (isNetworkAvail) {
+      context.read<LoginProvider>().sendOTP(context, scaffoldMessengerKey, setStateNow,fcmToken);
+    } else {
+      Future.delayed(const Duration(seconds: 2)).then(
+            (_) async {
+          await context.read<LoginProvider>().buttonController!.reverse();
+          setState(
+                () {
+              isNetworkAvail = false;
+            },
+          );
+        },
+      );
+    }
+  }
   Future<void> _playAnimation() async {
     try {
       await context.read<LoginProvider>().buttonController!.forward();
@@ -97,23 +114,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
 //==============================================================================
 //============================= Network Checking ===============================
 
-  Future<void> checkNetwork() async {
-    isNetworkAvail = await isNetworkAvailable();
-    if (isNetworkAvail) {
-      context.read<LoginProvider>().sendOTP(context, scaffoldMessengerKey, setStateNow,fcmToken);
-    } else {
-      Future.delayed(const Duration(seconds: 2)).then(
-        (_) async {
-          await context.read<LoginProvider>().buttonController!.reverse();
-          setState(
-            () {
-              isNetworkAvail = false;
-            },
-          );
-        },
-      );
-    }
-  }
+
 
   bool validateAndSave() {
     final form = _formkey.currentState!;

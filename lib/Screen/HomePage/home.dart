@@ -745,7 +745,10 @@ class _HomeState extends State<Home>
                                   //   ),
                                   // ),
                                  // getChart(),
-                                  //catChart(value, context, setStateNow),
+                                 //  Hum Jaa rahe hai
+                                 /// 1 minit bus
+                                  /// Shutdown kr dena ok
+                                  //catChart(value, contextok, setStateNow),
                                 ],
                               ),
                             ),
