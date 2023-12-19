@@ -130,16 +130,20 @@ class _OrderListState extends State<OrderList>
     super.build(context);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: lightWhite,
-      body: isNetworkAvail
-          ? _showContent()
-          : noInternet(
-              context,
-              setStateNoInternate,
-              orderListProvider!.buttonSqueezeanimation,
-              orderListProvider!.buttonController,
-            ),
+    return SafeArea(
+      bottom: true,
+      top: false,
+      child: Scaffold(
+        backgroundColor: lightWhite,
+        body: isNetworkAvail
+            ? _showContent()
+            : noInternet(
+                context,
+                setStateNoInternate,
+                orderListProvider!.buttonSqueezeanimation,
+                orderListProvider!.buttonController,
+              ),
+      ),
     );
   }
 
