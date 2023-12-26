@@ -247,21 +247,21 @@ currentPage2(
       //     getCommanSwitch(3, setStateNow),
       //   ],
       // ),
-      editProvider!.currentSellectedProductIsPysical
-          ? getCommanSizedBox()
-          : Container(),
-      editProvider!.currentSellectedProductIsPysical
-          ? Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: getPrimaryCommanText(
-                      getTranslated(context, "Is Product Cancelable?")!, true),
-                ),
-                getCommanSwitch(4, setStateNow),
-              ],
-            )
-          : Container(),
+      // editProvider!.currentSellectedProductIsPysical
+      //     ? getCommanSizedBox()
+      //     : Container(),
+      // editProvider!.currentSellectedProductIsPysical
+      //     ? Row(
+      //         children: [
+      //           Expanded(
+      //             flex: 2,
+      //             child: getPrimaryCommanText(
+      //                 getTranslated(context, "Is Product Cancelable?")!, true),
+      //           ),
+      //           getCommanSwitch(4, setStateNow),
+      //         ],
+      //       )
+      //     : Container(),
       editProvider!.isCancelable == "1" ? getCommanSizedBox() : Container(),
       editProvider!.currentSellectedProductIsPysical
           ? editProvider!.isCancelable == "1"

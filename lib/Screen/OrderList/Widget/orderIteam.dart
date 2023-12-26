@@ -34,6 +34,7 @@ class OrderIteam extends StatelessWidget {
   Widget build(BuildContext context) {
     Order_Model model = orderListProvider!.orderList[index];
     Color back;
+    print( orderListProvider!.orderList[index].itemList![0].activeStatus.toString()+"((((((((((((((((((((((");
 
     if ((model.itemList![0].activeStatus!) == DELIVERD) {
       back = Colors.green;
@@ -118,11 +119,12 @@ class OrderIteam extends StatelessWidget {
                             return getTranslated(context, "RECEIVED_LBL")!;
                           } else if (StringValidation.capitalize(model.itemList![0].activeStatus!) ==
                               "Processed") {
+
                             return getTranslated(context, "PROCESSED_LBL")!;
-                          } else if (StringValidation.capitalize(
-                                  model.itemList![0].activeStatus!) ==
-                              "Picked") {
-                            return getTranslated(context, "SHIPED_LBL")!;
+                          } else if (model.itemList![0].activeStatus ==
+                              "shipped") {
+                           return "Picked";
+                          //  return getTranslated(context, "SHIPED_LBL")!;
                           } else if (StringValidation.capitalize(
                                   model.itemList![0].activeStatus!) ==
                               "Delivered") {

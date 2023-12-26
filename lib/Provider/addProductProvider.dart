@@ -607,7 +607,6 @@ class AddProductProvider extends ChangeNotifier {
           request.fields[PICKUP_LOCATION] = selectedPickUpLocation!;
         }
         request.fields[CategoryId] = selectedCatID!;
-        print('_____request.fields_____${request.fields}_________');
        //request.fields[ProductType] = productType!;
         request.fields[VariantStockLevelType] = variantStockLevelType!;
        // request.fields[AttributeValues] = attributesValuesIds.join(",");
